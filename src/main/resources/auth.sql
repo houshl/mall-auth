@@ -1,0 +1,11 @@
+use mall_auth;
+
+CREATE TABLE t_user(
+  id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+  username VARCHAR(255) NOT NULL COMMENT '用户名',
+  password VARCHAR(255) NOT NULL COMMENT '密码',
+  mobile VARCHAR(255) NOT NULL COMMENT '手机号',
+  create_time DATETIME NOT NULL COMMENT '创建时间'
+) COMMENT '用户表';
+
+SELECT * FROM t_user;
