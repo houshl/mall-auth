@@ -11,7 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * Created by houshuanglong on 2018/8/30.
  */
 @Configuration
-public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -23,6 +23,7 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin()
                 .and()
                 .authorizeRequests()
+                .antMatchers("/user/register", "/user/login").permitAll()
                 .anyRequest()
                 .authenticated();
     }

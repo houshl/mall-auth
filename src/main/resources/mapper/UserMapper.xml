@@ -13,6 +13,7 @@
   </resultMap>
 
   <select id="selectByUsername" resultMap="BaseResultMap">
-    SELECT * FROM t_user WHERE username=#{username}
+    SELECT * FROM t_user WHERE username = #{username}
   </select>
+
 </mapper>

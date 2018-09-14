@@ -1,10 +1,18 @@
 package com.houshl.mall.auth.model;
 
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.Date;
 
 @Table(name = "t_user")
-public class User {
+@Data
+public class User implements UserDetails {
     /**
      * 主键
      */
@@ -20,6 +28,7 @@ public class User {
     /**
      * 密码
      */
+    @JsonIgnore
     private String password;
 
     /**
@@ -28,98 +37,38 @@ public class User {
     private String mobile;
 
     /**
+     * 状态
+     */
+    private Integer status;
+
+    /**
      * 创建时间
      */
     @Column(name = "create_time")
     private Date createTime;
 
-    /**
-     * 获取主键
-     *
-     * @return id - 主键
-     */
-    public Long getId() {
-        return id;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return AuthorityUtils.commaSeparatedStringToAuthorityList("admin, user");
     }
 
-    /**
-     * 设置主键
-     *
-     * @param id 主键
-     */
-    public void setId(Long id) {
-        this.id = id;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    /**
-     * 获取用户名
-     *
-     * @return username - 用户名
-     */
-    public String getUsername() {
-        return username;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
-    /**
-     * 设置用户名
-     *
-     * @param username 用户名
-     */
-    public void setUsername(String username) {
-        this.username = username;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 
-    /**
-     * 获取密码
-     *
-     * @return password - 密码
-     */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
-     * 设置密码
-     *
-     * @param password 密码
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    /**
-     * 获取手机号
-     *
-     * @return mobile - 手机号
-     */
-    public String getMobile() {
-        return mobile;
-    }
-
-    /**
-     * 设置手机号
-     *
-     * @param mobile 手机号
-     */
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
-    /**
-     * 获取创建时间
-     *
-     * @return create_time - 创建时间
-     */
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    /**
-     * 设置创建时间
-     *
-     * @param createTime 创建时间
-     */
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
