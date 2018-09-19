@@ -12,7 +12,7 @@ import java.util.Date;
 
 @Table(name = "t_user")
 @Data
-public class User implements UserDetails {
+public class User {
     /**
      * 主键
      */
@@ -47,28 +47,4 @@ public class User implements UserDetails {
     @Column(name = "create_time")
     private Date createTime;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return AuthorityUtils.commaSeparatedStringToAuthorityList("admin, user");
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
 }

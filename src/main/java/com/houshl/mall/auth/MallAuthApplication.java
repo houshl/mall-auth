@@ -1,6 +1,5 @@
 package com.houshl.mall.auth;
 
-import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
@@ -10,7 +9,6 @@ import tk.mybatis.spring.annotation.MapperScan;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableCaching
-@EnableRabbit
 @MapperScan("com.houshl.mall.auth.mapper")
 public class MallAuthApplication {
 
@@ -18,3 +16,7 @@ public class MallAuthApplication {
 		SpringApplication.run(MallAuthApplication.class, args);
 	}
 }
+
+
+
+

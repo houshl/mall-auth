@@ -1,19 +1,15 @@
 package com.houshl.mall.auth.controller;
 
 import com.houshl.mall.auth.model.User;
-import com.houshl.mall.auth.param.AuthorizationParam;
 import com.houshl.mall.auth.param.UserParam;
 import com.houshl.mall.auth.response.ObjectResponse;
 import com.houshl.mall.auth.response.ResponseUtils;
 import com.houshl.mall.auth.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
 import java.util.List;
 
 /**
