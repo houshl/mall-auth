@@ -34,32 +34,31 @@ public class AuthenticationServerConfig extends AuthorizationServerConfigurerAda
     @Autowired
     UserDetailsService userDetailsService;
 
-    @Autowired
+    /*@Autowired
     JwtAccessTokenConverter jwtAccessTokenConverter;
 
     @Autowired
-    JwtTokenEnhancer jwtTokenEnhancer;
-
+    JwtTokenEnhancer jwtTokenEnhancer;*/
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        TokenEnhancerChain enhancerChain = new TokenEnhancerChain();
+        /*TokenEnhancerChain enhancerChain = new TokenEnhancerChain();
         List<TokenEnhancer> tokenEnhancerList = new ArrayList<>();
         tokenEnhancerList.add(jwtTokenEnhancer);
         tokenEnhancerList.add(jwtAccessTokenConverter);
-        enhancerChain.setTokenEnhancers(tokenEnhancerList);
+        enhancerChain.setTokenEnhancers(tokenEnhancerList);*/
 
         endpoints
-                .tokenEnhancer(enhancerChain)
+                //.tokenEnhancer(enhancerChain)
                 .tokenStore(new RedisTokenStore(redisConnectionFactory))
                 .authenticationManager(authenticationManager)
-                .userDetailsService(userDetailsService)
-                .accessTokenConverter(jwtAccessTokenConverter);
+                .userDetailsService(userDetailsService);
+                //.accessTokenConverter(jwtAccessTokenConverter);
     }
 
     @Override
